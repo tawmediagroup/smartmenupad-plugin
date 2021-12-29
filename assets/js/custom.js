@@ -56,9 +56,15 @@ function updatemenu() {
 		action: 'update_menu'                    
 	};
 	jQuery.get(ajaxurl, data, function(response) {
+		var result = JSON.parse(response);
 		jQuery('.sync-spinner').hide();
-		jQuery('.sync').find('span').text('Synced');
-		window.location.reload();		
+		if(result.status == 'ERROR') {
+			jQuery('.sync').find('span').text('Sync Now');
+			alert(result.message);
+		} else {
+			jQuery('.sync').find('span').text('Synced');
+			window.location.reload();
+		}
 	});  
 }
 
