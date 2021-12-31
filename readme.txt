@@ -11,15 +11,6 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Plugin to keep your menu at one place and sync to your own wordpress website from smart menupad platform.
 
-== Description ==
-
-Write Long Description for plugin
-
-== Frequently Asked Questions ==
-= Question Here =
- 
-Answer Here
-
 
 == Installation ==
 1. Go to Wordpress Admin. Plugins > Add New

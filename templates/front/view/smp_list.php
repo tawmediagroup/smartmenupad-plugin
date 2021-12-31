@@ -42,13 +42,13 @@ if(!empty($url)){
 ?>
 <style type="text/css">
 	.dynamicclass {
-        background-color: <?=$button_bg_color?> !important;
-		color: <?=$button_text_color?> !important;
+        background-color: <?php echo esc_attr($button_bg_color); ?> !important;
+		color: <?php echo esc_attr($button_text_color); ?> !important;
     }
 
     .dynamicclass:hover{
-        background-color: <?=$button_bg_hover_color?> !important;
-		color: <?=$button_text_hover_color?> !important;
+        background-color: <?php echo esc_attr($button_bg_hover_color); ?> !important;
+		color: <?php echo esc_attr($button_text_hover_color); ?> !important;
     }
 </style>
 
@@ -58,16 +58,16 @@ if(!empty($url)){
             if(!in_array($value['id'], $selected_menu)) {
                 continue;
             } ?>
-            <div class="<?=$classcolmd?> list-menu-item-col">
+            <div class="<?php echo esc_attr($classcolmd); ?> list-menu-item-col">
                 <div class="row">
                     <div class="col-lg-3">
-                        <img style="border-radius: <?=$top?>px <?=$right?>px <?=$bottom?>px <?=$left?>px;" src="<?=$value["imagePath"]?>" alt="" title="<?=$value["name"]?>" class="menuItemImage"/>
+                        <img style="border-radius: <?php echo esc_attr($top); ?>px <?php echo esc_attr($right); ?>px <?php echo esc_attr($bottom); ?>px <?php echo esc_attr($left); ?>px;" src="<?php echo esc_url($value["imagePath"]); ?>" alt="" title="<?php echo esc_attr($value["name"]); ?>" class="menuItemImage"/>
                     </div>
                     <div class="col-lg-9">
-                        <span style="color: <?=$price_color?>;" class="list-menu-item-price">$<?=$value["finalPrice"]?></span>
-                        <h3 style="color: <?=$heading_color?>;"  class="list-menu-item-name"><?=$value["categoryName"]?></h3>
-                        <p style="color: <?=$description_color?>;" class="list-menu-item-des"><?=$value["name"]?></p>
-                        <a href="#" class="order-btn dynamicclass" style="border-radius: <?=$btntop?>px <?=$btnright?>px <?=$btnbottom?>px <?=$btnleft?>px;"><?php _e('Order Now', 'smart-menupad'); ?></a>
+                        <span style="color: <?php echo esc_attr($price_color); ?>;" class="list-menu-item-price">$<?php echo esc_html($value["finalPrice"]); ?></span>
+                        <h3 style="color: <?php echo esc_attr($heading_color); ?>;"  class="list-menu-item-name"><?php echo esc_html($value["categoryName"]); ?></h3>
+                        <p style="color: <?php echo esc_attr($description_color); ?>;" class="list-menu-item-des"><?php echo esc_html($value["name"]); ?></p>
+                        <a href="#" class="order-btn dynamicclass" style="border-radius: <?php echo esc_attr($btntop); ?>px <?php echo esc_attr($btnright); ?>px <?php echo esc_attr($btnbottom); ?>px <?php echo esc_attr($btnleft); ?>px;"><?php _e('Order Now', 'smart-menupad'); ?></a>
                     </div>
                 </div>
             </div>

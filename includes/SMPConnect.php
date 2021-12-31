@@ -25,8 +25,8 @@ class SMPConnect extends SMPBase {
 			$username = $smp_login['username'];
 			$password = $smp_login['password'];
 		} else if(isset($_POST["connect_smp"])) {
-			$grant_type = $_POST['grant_type'];
-			$username = $_POST['username'];
+			$grant_type = sanitize_text_field($_POST['grant_type']);
+			$username = sanitize_email($_POST['username']);
 			$password = $_POST['password'];
 		}
 		

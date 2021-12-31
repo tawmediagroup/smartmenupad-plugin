@@ -33,10 +33,10 @@ class SMPInit extends SMPBase {
 				'wp_head', 
 				array($this, 'SMPFrontendStyle') 
 			);
-		add_action( 
-			'wp_enqueue_scripts', 
-			array($this, 'SMPFrontendScript' )
-		);
+		// add_action( 
+			// 'wp_enqueue_scripts', 
+			// array($this, 'SMPFrontendScript' )
+		// );
 	}
 	
 	public function SMPActivatePlugin() {

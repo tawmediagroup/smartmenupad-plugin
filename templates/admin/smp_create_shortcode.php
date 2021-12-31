@@ -2,19 +2,19 @@
     <section class="container-fluid">
         <div class="row mt-4 mb-3">
             <div class="col-lg-12">
-                <h2 class="wp-heading-inline">Menu Short Code</h2>
-                <a href="<?=get_admin_url().'admin.php?page=smp-shortcode&quickmenuid=new'?>" class="page-title-action"> Add New </a>
-                <span style="color:green;margin-left:55px;"><?=$msg?></span>
+                <h2 class="wp-heading-inline"><?php _e('Menu Short Code', 'smart-menupad'); ?></h2>
+                <a href="<?php echo esc_url($this->smp_admin_url('smp-shortcode').'&quickmenuid=new'); ?>" class="page-title-action"> <?php _e('Add New', 'smart-menupad'); ?> </a>
+                <span style="color:green;margin-left:55px;"><?php _e(esc_html($msg), 'smart-menupad'); ?></span>
             </div>    
         </div>
         <?php if(!empty($quickmenuid)) { ?> 
-            <form action ="<?php echo $this->smp_admin_url('smp-shortcode'); ?>" method ="post">  
+            <form action ="<?php echo esc_url($this->smp_admin_url('smp-shortcode')); ?>" method ="post">  
                 <?php if($quickmenuid == "new" ) { ?>
                     <input type="hidden" name="add_shortcode" value="add_shortcode" >
                 <?php } 
                 else { ?>
                     <input type="hidden" name="update_shortcode" value="update_shortcode" >
-                    <input type="hidden" name="smp_quick_menu_id" value="<?=$quickmenuid?>" >
+                    <input type="hidden" name="smp_quick_menu_id" value="<?php echo esc_attr($quickmenuid); ?>" >
                 <?php } ?>
                 <?php
                     $title = $one_shortcode_data->title ?? '';
@@ -60,8 +60,8 @@
                                         <?php if(count($smp_category) > 0) {
                                             foreach ($smp_category as $keycat => $val) { ?>
                                                     <div class="productList">
-                                                        <input onchange="filterProducts(this,<?=$keycat?>)" type="checkbox" checked="checked" value="<?=$keycat?>">
-                                                        <?=$val?> 
+                                                        <input onchange="filterProducts(this,<?=$keycat?>)" type="checkbox" checked="checked" value="<?php echo esc_attr($keycat); ?>">
+                                                        <?php echo esc_html($val); ?> 
                                                     </div>  
                                                 <?php }
                                             }
@@ -78,7 +78,7 @@
 										foreach( $smp_allmenu_category_wise as $k => $categories ) {
 											foreach ($categories as $key => $value) { 
 												$checked = in_array($value['id'], $selected_menu)?' checked="checked"' :'';
-												$menu = '<div class="col-xl-12 col-lg-12  marginBottom menu_'.$k.'_'.$value['id'].'"><div class="menuItemSection"><div class="row"><div class="col-6"><img src="'.$value["imagePath"].'" alt="" title="Menu Item Name" class="menuItemImage"/></div><div class="col-6"><span class="list-menu-item-price">$'.$value["finalPrice"].'</span><h3 class="list-menu-item-name">'.$value["categoryName"].'</h3><p class="list-menu-item-des">'.$value["name"].'</p><label class="labelBlock"><input onchange="menuitems(this)"'.$checked.' type="checkbox" name="menuids[]" value="'.$value['id'].'"/>Add to section</label></div></div></div></div>'; 
+												$menu = '<div class="col-xl-12 col-lg-12  marginBottom menu_'.esc_attr($k).'_'.esc_attr($value['id']).'"><div class="menuItemSection"><div class="row"><div class="col-6"><img src="'.esc_url($value["imagePath"]).'" alt="" title="Menu Item Name" class="menuItemImage"/></div><div class="col-6"><span class="list-menu-item-price">$'.esc_html($value["finalPrice"]).'</span><h3 class="list-menu-item-name">'.esc_html($value["categoryName"]).'</h3><p class="list-menu-item-des">'.esc_html($value["name"]).'</p><label class="labelBlock"><input onchange="menuitems(this)"'.$checked.' type="checkbox" name="menuids[]" value="'.esc_attr($value['id']).'"/>Add to section</label></div></div></div></div>'; 
 												if(in_array($value['id'], $selected_menu)) {
 													$selected .= $menu;
 												} else {
@@ -147,16 +147,16 @@
                                 <div class="postbox-section">
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?=$image_border_array[0]??""?>" name="imageborder[]" placeholder="0" title="Margin Top">
+                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($image_border_array[0])??""?>" name="imageborder[]" placeholder="0" title="Margin Top">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?=$image_border_array[1]??""?>" name="imageborder[]" placeholder="0" title="Margin right">
+                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($image_border_array[1])??""?>" name="imageborder[]" placeholder="0" title="Margin right">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?=$image_border_array[2]??""?>" name="imageborder[]" placeholder="0" title="Margin bottom">
+                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($image_border_array[2])??""?>" name="imageborder[]" placeholder="0" title="Margin bottom">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?=$image_border_array[3]??""?>" name="imageborder[]" placeholder="0" title="Margin left">
+                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($image_border_array[3])??""?>" name="imageborder[]" placeholder="0" title="Margin left">
                                         </div>
                                     </div>
                                 </div>
@@ -167,21 +167,21 @@
                                         <div class="sidebarTitle"><?php _e('Item Color', 'smart-menupad'); ?></div>
                                         <div class="instructionName"><?php _e('You can change the color of menu item name', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
-                                            <input type="text" name="heading_color" value="<?=$heading_color?>" class="heading_color" data-default-color="#000000" />
+                                            <input type="text" name="heading_color" value="<?php echo esc_attr($heading_color); ?>" class="heading_color" data-default-color="#000000" />
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="sidebarTitle"><?php _e('Item Description Color', 'smart-menupad'); ?></div>
                                         <div class="instructionName"><?php _e('You can change the color of menu item description', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
-                                            <input type="text" name="description_color" value="<?=$description_color?>" class="description_color" data-default-color="#898989" />
+                                            <input type="text" name="description_color" value="<?php echo esc_attr($description_color); ?>" class="description_color" data-default-color="#898989" />
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="sidebarTitle"><?php _e('Item Price Color', 'smart-menupad'); ?></div>
                                         <div class="instructionName"><?php _e('You can change the color of menu item price', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
-                                            <input type="text" name="price_color" value="<?=$price_color?>" class="price_color" data-default-color="#effeff" />
+                                            <input type="text" name="price_color" value="<?php echo esc_attr($price_color); ?>" class="price_color" data-default-color="#effeff" />
                                         </div>
                                     </div>
                                 </div>
@@ -191,16 +191,16 @@
                                 <div class="postbox-section">
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?=$button_border_array[0]??""?>" name="orderbtnborder[]" placeholder="0" title="Margin Top">
+                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($button_border_array[0])??""?>" name="orderbtnborder[]" placeholder="0" title="Margin Top">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?=$button_border_array[0]??""?>" name="orderbtnborder[]" placeholder="0" title="Margin right">
+                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($button_border_array[0])??""?>" name="orderbtnborder[]" placeholder="0" title="Margin right">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?=$button_border_array[0]??""?>" name="orderbtnborder[]" placeholder="0" title="Margin bottom">
+                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($button_border_array[0])??""?>" name="orderbtnborder[]" placeholder="0" title="Margin bottom">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?=$button_border_array[0]??""?>" name="orderbtnborder[]" placeholder="0" title="Margin left">
+                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($button_border_array[0])??""?>" name="orderbtnborder[]" placeholder="0" title="Margin left">
                                         </div>
                                     </div>
                                 </div>
@@ -210,13 +210,13 @@
                                     <div class="col-lg-6">
                                         <div class="sidebarTitle"><?php _e('Button Background Color', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
-                                            <input type="text" name="button_bg_color" value="<?=$button_bg_color?>" class="price_color" data-default-color="#effeff" />
+                                            <input type="text" name="button_bg_color" value="<?php echo esc_attr($button_bg_color); ?>" class="price_color" data-default-color="#effeff" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="sidebarTitle"><?php _e('Button Text Color', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
-                                            <input type="text" name="button_text_color" value="<?=$button_text_color?>" class="price_color" data-default-color="#effeff" />
+                                            <input type="text" name="button_text_color" value="<?php echo esc_attr($button_text_color);?>" class="price_color" data-default-color="#effeff" />
                                         </div>
                                     </div>
                                 </div>
@@ -226,13 +226,13 @@
                                     <div class="col-lg-6">
                                         <div class="sidebarTitle"><?php _e('Button Background Hover Color', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
-                                            <input type="text" name="button_bg_hover_color" value="<?=$button_bg_hover_color?>" class="price_color" data-default-color="#effeff" />
+                                            <input type="text" name="button_bg_hover_color" value="<?php echo esc_attr($button_bg_hover_color); ?>" class="price_color" data-default-color="#effeff" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="sidebarTitle"><?php _e('Button Hover Text Color', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
-                                            <input type="text" name="button_text_hover_color" value="<?=$button_text_hover_color?>" class="price_color" data-default-color="#effeff" />
+                                            <input type="text" name="button_text_hover_color" value="<?php echo esc_attr($button_text_hover_color); ?>" class="price_color" data-default-color="#effeff" />
                                         </div>
                                     </div>
                                 </div>
@@ -263,10 +263,10 @@
                                                 $time = strtotime($value->time);          
                                             ?>
                                             <tr>                 
-                                                <td><?=$title?></td>                 
-                                                <td>[smart_menupad id=<?=$id?>]</td>                               
+                                                <td><?php echo esc_html($title); ?></td>                 
+                                                <td>[smart_menupad id=<?php echo esc_attr($id); ?>]</td>                               
                                                 <td><?=date("Y-m-d", $time)?></td>             
-                                                <td class="text-center"><a href="<?php echo $this->smp_admin_url('smp-shortcode'); ?>&quickmenuid=<?=$id?>"><?php _e('Edit', 'smart-menupad'); ?></a></td>
+                                                <td class="text-center"><a href="<?php echo esc_url($this->smp_admin_url('smp-shortcode').'&quickmenuid='.$id); ?>"><?php _e('Edit', 'smart-menupad'); ?></a></td>
                                             </tr>
                                         <?php
                                         }

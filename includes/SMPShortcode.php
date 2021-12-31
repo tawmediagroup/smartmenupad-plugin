@@ -33,33 +33,28 @@ class SMPShortcode extends SMPBase {
 		$smp_allmenu = get_option('smp_allmenulist');
 		$smp_allmenu_category_wise = [];
 		$smp_category = [];
-		$default_category = 0;
 		foreach ($smp_allmenu as $key => $value) {
 			$smp_allmenu_category_wise[$value["categoryId"]][] = $smp_allmenu[$key];
 			$smp_category[$value["categoryId"]] = $value["categoryName"];
-			$default_category = $value["categoryId"];
-		}
-		if(isset($_GET['catId']) && !empty($_GET['catId'])) {
-			$default_category = $_GET['catId'];
 		}
 		if(isset($_POST['menuids']) && count($_POST['menuids']) > 0) {
 			$data = [ 
 				'time' => current_time( 'mysql' ), 
-				'title' => $_POST['title'], 
+				'title' => sanitize_text_field($_POST['title']), 
 				// 'menu_category' => $_POST['menu_category'], 
-				'layout_view' => $_POST['layout_view'], 
-				'layout_column' => $_POST['layout_column'],
-				'image_border' => implode(",", $_POST['imageborder']), 
-				'heading_color' => $_POST['heading_color'], 
-				'description_color' => $_POST['description_color'], 
-				'price_color' => $_POST['price_color'], 
-				'button_bg_color' => $_POST['button_bg_color'], 
-				'button_bg_hover_color' => $_POST['button_bg_hover_color'],
-				'button_text_color' => $_POST['button_text_color'], 
-				'button_text_hover_color' => $_POST['button_text_hover_color'],				
-				'button_border' => implode(",", $_POST['orderbtnborder']),
+				'layout_view' => sanitize_text_field($_POST['layout_view']), 
+				'layout_column' => sanitize_text_field($_POST['layout_column']),
+				'image_border' => implode(",", array_map('sanitize_text_field', $_POST['imageborder'])), 
+				'heading_color' => sanitize_hex_color($_POST['heading_color']), 
+				'description_color' => sanitize_hex_color($_POST['description_color']), 
+				'price_color' => sanitize_hex_color($_POST['price_color']), 
+				'button_bg_color' => sanitize_hex_color($_POST['button_bg_color']), 
+				'button_bg_hover_color' => sanitize_hex_color($_POST['button_bg_hover_color']),
+				'button_text_color' => sanitize_hex_color($_POST['button_text_color']), 
+				'button_text_hover_color' => sanitize_hex_color($_POST['button_text_hover_color']),				
+				'button_border' => implode(",", array_map('sanitize_text_field', $_POST['orderbtnborder'])),
 				'text' => 0, 
-				'url' => implode(",",$_POST['menuids']), 
+				'url' => implode(",", array_map('sanitize_text_field', $_POST['menuids'])), 
 			];
 			
 			if(isset($_POST['add_shortcode'])) {	
@@ -69,7 +64,7 @@ class SMPShortcode extends SMPBase {
 				);
 				$msg = "Successfully Created !!!";
 			} else if(isset($_POST['update_shortcode']) && isset($_POST['smp_quick_menu_id'])) {		
-				$where = [ 'id' => $_POST['smp_quick_menu_id'] ];
+				$where = [ 'id' => sanitize_text_field($_POST['smp_quick_menu_id']) ];
 				$wpdb->update( 
 					$table_name, 
 					$data,
@@ -80,7 +75,7 @@ class SMPShortcode extends SMPBase {
 		}
 		
 		if(isset($_GET['quickmenuid']) && $_GET['quickmenuid'] != "new") {
-			$quickmenuid = $_GET['quickmenuid'];
+			$quickmenuid = sanitize_text_field($_GET['quickmenuid']);
 			$one_shortcode_data = $wpdb->get_row("SELECT * FROM $table_name where id = ".$quickmenuid." ");
 		} else {
 			// New Shortcode and Added List
