@@ -52,7 +52,7 @@ class SMPConnect extends SMPBase {
 							$wpdb->query("TRUNCATE TABLE $table_name ");
 						}
 					}
-					update_option('smp_login', $_POST);
+					update_option('smp_login', $data);
 					update_option('smp_connect',$resp);
 				} else {
 					$errorMsg = isset($resp["error_description"])?$resp["error_description"]:"Please contact to Admin";

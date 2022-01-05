@@ -1,10 +1,10 @@
 <section class="loginForm">
 	<div class="formWrapper">
 		<h2><?php _e('Connect to <b>Smart Menu Pad</b>', 'smart-menupad'); ?></h2>            
-		<img src="<?php echo $this->smp_plugin_url('assets/img/icon.png'); ?>" alt="image"/>
+		<img src="<?php echo esc_url($this->smp_plugin_url('assets/img/icon.png')); ?>" alt="image"/>
 		<p><?php _e('You’re almost done! Just 2 steps to have your website connected to SmartMenuPad for automatic.', 'smart-menupad'); ?></p>
 		<span><?php _e('Login with your SmartMenuPad Username and Password', 'smart-menupad'); ?></span>
-		<span style="color:red;background:none;margin-right: 55px;"><?=$errorMsg?></span>
+		<span style="color:red;background:none;margin-right: 55px;"><?php _e($errorMsg, 'smart-menupad'); ?></span>
 		<div class="loader" id="loadingid" style="display:none;"></div> 
 		<form action ="" method ="post">    
 			<input type="hidden" name="connect_smp" value="connect_smp" >

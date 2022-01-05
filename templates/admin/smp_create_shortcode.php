@@ -49,7 +49,7 @@
                     <div class="col-lg-9">
                         <div class="row mb-4">
                             <div class="col-lg-12">
-                                <input type="text" name="title" value="<?=$title?>" required="" placeholder="Enter Title" class="titleTextbox"/>
+                                <input type="text" name="title" value="<?php echo esc_attr($title); ?>" required="" placeholder="Enter Title" class="titleTextbox"/>
                             </div>
                         </div>
                         <div class="row">
@@ -60,7 +60,7 @@
                                         <?php if(count($smp_category) > 0) {
                                             foreach ($smp_category as $keycat => $val) { ?>
                                                     <div class="productList">
-                                                        <input onchange="filterProducts(this,<?=$keycat?>)" type="checkbox" checked="checked" value="<?php echo esc_attr($keycat); ?>">
+                                                        <input onchange="filterProducts(this,<?php echo esc_attr($keycat); ?>)" type="checkbox" checked="checked" value="<?php echo esc_attr($keycat); ?>">
                                                         <?php echo esc_html($val); ?> 
                                                     </div>  
                                                 <?php }
@@ -82,7 +82,7 @@
 												if(in_array($value['id'], $selected_menu)) {
 													$selected .= $menu;
 												} else {
-													echo $menu;
+													echo wp_kses_post($menu);
 												}
 											}
 										} ?>
@@ -94,7 +94,7 @@
                                 <div class="wrapperBg">
                                     <h2>Selected Product</h2>
                                     <div class="row selected_menu menuListHeight">
-                                        <?php echo $selected; ?>
+                                        <?php echo wp_kses_post($selected); ?>
                                     </div>
                                 </div>
                           </div>                            
@@ -108,10 +108,10 @@
                                     <div class="postbox-section">
                                         <?php if($quickmenuid != "new") { ?>
                                             <p><?php _e('Copy and paste below shortcode into your posts or pages', 'smart-menupad'); ?></p>
-                                            <div class="qt-sc-code">[smart_menupad id=<?=$quickmenuid?>]</div>
+                                            <div class="qt-sc-code">[smart_menupad id=<?php echo intval($quickmenuid); ?>]</div>
                                         <?php } ?>
                                         <button type="submit" class="pubhBtn">
-                                            <?=($quickmenuid == "new")? 'Publish':'Update'?>
+                                            <?php echo ($quickmenuid == "new")? 'Publish':'Update'?>
                                         </button>
                                     </div>    
                                 </div>
@@ -125,8 +125,8 @@
                                         <div class="sidebarTitle"><?php _e('Choose a Layout style from below', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
                                             <select name="layout_view" id="layout_view" class="menuCategorySelect">
-                                                <option value="1" <?=($layout_view == 1)? 'selected="selected"' : ""?> ><?php _e('Grid View', 'smart-menupad'); ?></option>
-                                                <option value="2" <?=($layout_view == 2)? 'selected="selected"' : ""?> ><?php _e('List View', 'smart-menupad'); ?></option>                                  
+                                                <option value="1" <?php if($layout_view == 1) echo 'selected="selected"'; ?> ><?php _e('Grid View', 'smart-menupad'); ?></option>
+                                                <option value="2" <?php if($layout_view == 2) echo 'selected="selected"'; ?> ><?php _e('List View', 'smart-menupad'); ?></option>                                  
                                             </select>
                                         </div>
                                     </div>
@@ -134,9 +134,9 @@
                                         <div class="sidebarTitle"><?php _e('Column', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
                                             <select name="layout_column" id="layout_column" class="menuCategorySelect">
-                                                <option value="2" <?=($layout_column == 2)? 'selected="selected"' : ""?>>2</option>
-                                                <option value="3" <?=($layout_column == 3)? 'selected="selected"' : ""?>>3</option>                                  
-                                                <option value="4" <?=($layout_column == 4)? 'selected="selected"' : ""?>>4</option>                                  
+                                                <option value="2" <?php if($layout_column == 2) echo 'selected="selected"'; ?>>2</option>
+                                                <option value="3" <?php if($layout_column == 3) echo 'selected="selected"'; ?>>3</option>                                  
+                                                <option value="4" <?php if($layout_column == 4) echo 'selected="selected"'; ?>>4</option>                                  
                                             </select>
                                         </div>    
                                     </div>
@@ -265,7 +265,7 @@
                                             <tr>                 
                                                 <td><?php echo esc_html($title); ?></td>                 
                                                 <td>[smart_menupad id=<?php echo esc_attr($id); ?>]</td>                               
-                                                <td><?=date("Y-m-d", $time)?></td>             
+                                                <td><?php echo date("Y-m-d", $time); ?></td>             
                                                 <td class="text-center"><a href="<?php echo esc_url($this->smp_admin_url('smp-shortcode').'&quickmenuid='.$id); ?>"><?php _e('Edit', 'smart-menupad'); ?></a></td>
                                             </tr>
                                         <?php

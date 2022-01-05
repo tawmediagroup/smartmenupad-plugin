@@ -20,20 +20,20 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="orderBg">
-					<span><?=$this->smp_total_orders()?></span> <p><?php _e('Total Orders', 'smart-menupad'); ?></p>
+					<span><?php echo intval($this->smp_total_orders()); ?></span> <p><?php _e('Total Orders', 'smart-menupad'); ?></p>
 				</div>
 			</div>
 			<div class="col-lg-3">
 				<div class="productBg">
-					<span><?=count($smp_allmenulist);?></span> <p><?php _e('Total Products', 'smart-menupad'); ?></p>
+					<span><?php echo intval(count($smp_allmenulist)); ?></span> <p><?php _e('Total Products', 'smart-menupad'); ?></p>
 				</div>
 			</div>
 			<div class="col-lg-3">
 				<div class="customerBg">
-					<span><?=$this->smp_total_customers()?></span> <p><?php _e('Total Customers', 'smart-menupad'); ?></p>
+					<span><?php echo intval($this->smp_total_customers()); ?></span> <p><?php _e('Total Customers', 'smart-menupad'); ?></p>
 				</div>            
 			</div>
-			<div class="col-lg-3" onclick="location.href = '<?=$this->smp_admin_url('smp-shortcode')?>' ">
+			<div class="col-lg-3" onclick="location.href = '<?php echo esc_url($this->smp_admin_url('smp-shortcode')); ?>' ">
 				<div class="shortCodeBg">                 
 					<span>+</span> <p><?php _e('Make ShortCode', 'smart-menupad'); ?></p>
 				</div>            
@@ -43,7 +43,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
-			<form action ="<?=$this->smp_admin_url('smp-shortcode')?>" method ="post">    
+			<form action ="<?php echo esc_url($this->smp_admin_url('smp-shortcode')); ?>" method ="post">    
 				<input type="hidden" name="smp_make_shortcode" value="smp_make_shortcode" >
 				<h2 class="wp-heading-inline"><?php _e('Food Menu', 'smart-menupad'); ?></h2>
 				<div id="poststuff">
@@ -84,7 +84,7 @@
 											$string .= '<td class="text-center"> <a href="#" class="viewLink" onclick="return viewMoreMenuInfo('.$value['id'].');">View Detail</a> </td>';
 											$string .= '</tr>';
 											$sno        = $sno + 1;
-											echo $string;       
+											echo wp_kses_post($string);       
 										}
 									?>
 								</tbody>
