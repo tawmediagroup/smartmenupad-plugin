@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: SMART MENU PAD
+ * Plugin Name: SMART MENUPAD
  * Plugin URI:	http://smartmenupad.com
- * Description: SMART MENU PAD
+ * Description: SMART MENUPAD
  * Version: 	1.0.0
- * Author: 		SMART MENU PAD
+ * Author: 		SMART MENUPAD
  * Requires at least: 5.2
  * Requires PHP: 7.0
  * Text Domain: smart-menupad
