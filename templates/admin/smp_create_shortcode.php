@@ -75,14 +75,24 @@
 									<div class="row menu_list menuListHeight">
 										<?php
 										$selected = '';
+										$allowed_html = array(
+											'div' => array('class' => array()),
+											'span' => array('class' => array()),
+											'h3' => array('class' => array()),
+											'p' => array('class' => array()),
+											'img' => array('class' => array(), 'src' => array(), 'alt' => array(), 'title' => array()),
+											'label' => array('class' => array()),
+											'input' => array('onchange' => array(), 'type' => array(), 'name' => array(), 'value' => array(), 'checked' => array()
+											),
+										);
 										foreach( $smp_allmenu_category_wise as $k => $categories ) {
 											foreach ($categories as $key => $value) { 
 												$checked = in_array($value['id'], $selected_menu)?' checked="checked"' :'';
-												$menu = '<div class="col-xl-12 col-lg-12  marginBottom menu_'.esc_attr($k).'_'.esc_attr($value['id']).'"><div class="menuItemSection"><div class="row"><div class="col-6"><img src="'.esc_url($value["imagePath"]).'" alt="" title="Menu Item Name" class="menuItemImage"/></div><div class="col-6"><span class="list-menu-item-price">$'.esc_html($value["finalPrice"]).'</span><h3 class="list-menu-item-name">'.esc_html($value["categoryName"]).'</h3><p class="list-menu-item-des">'.esc_html($value["name"]).'</p><label class="labelBlock"><input onchange="menuitems(this)"'.$checked.' type="checkbox" name="menuids[]" value="'.esc_attr($value['id']).'"/>Add to section</label></div></div></div></div>'; 
+												$menu = '<div class="col-xl-12 col-lg-12  marginBottom menu_'.esc_attr($k).'_'.esc_attr($value['id']).'"><div class="menuItemSection"><div class="row"><div class="col-6"><img src="'.esc_url($value["imagePath"]).'" alt="'.esc_html($value["name"]).'" title="'.esc_html($value["name"]).'" class="menuItemImage"/></div><div class="col-6"><span class="list-menu-item-price">$'.esc_html($value["finalPrice"]).'</span><h3 class="list-menu-item-name">'.esc_html($value["categoryName"]).'</h3><p class="list-menu-item-des">'.esc_html($value["name"]).'</p><label class="labelBlock"><input onchange="menuitems(this)"'.$checked.' type="checkbox" name="menuids[]" value="'.esc_attr($value['id']).'"/>Add to section</label></div></div></div></div>'; 
 												if(in_array($value['id'], $selected_menu)) {
 													$selected .= $menu;
 												} else {
-													echo wp_kses_post($menu);
+													echo wp_kses($menu, $allowed_html);
 												}
 											}
 										} ?>
@@ -94,7 +104,7 @@
                                 <div class="wrapperBg">
                                     <h2>Selected Product</h2>
                                     <div class="row selected_menu menuListHeight">
-                                        <?php echo wp_kses_post($selected); ?>
+                                        <?php echo wp_kses($selected, $allowed_html); ?>
                                     </div>
                                 </div>
                           </div>                            
@@ -147,16 +157,16 @@
                                 <div class="postbox-section">
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($image_border_array[0])??""?>" name="imageborder[]" placeholder="0" title="Margin Top">
+                                            <input type="text" class="inputRadius" value="<?php if(isset($image_border_array[0])) echo esc_attr($image_border_array[0]); ?>" name="imageborder[]" placeholder="0" title="Margin Top">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($image_border_array[1])??""?>" name="imageborder[]" placeholder="0" title="Margin right">
+                                            <input type="text" class="inputRadius" value="<?php if(isset($image_border_array[1])) echo esc_attr($image_border_array[1]); ?>" name="imageborder[]" placeholder="0" title="Margin right">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($image_border_array[2])??""?>" name="imageborder[]" placeholder="0" title="Margin bottom">
+                                            <input type="text" class="inputRadius" value="<?php if(isset($image_border_array[2])) echo esc_attr($image_border_array[2]); ?>" name="imageborder[]" placeholder="0" title="Margin bottom">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($image_border_array[3])??""?>" name="imageborder[]" placeholder="0" title="Margin left">
+                                            <input type="text" class="inputRadius" value="<?php if(isset($image_border_array[3])) echo esc_attr($image_border_array[3]); ?>" name="imageborder[]" placeholder="0" title="Margin left">
                                         </div>
                                     </div>
                                 </div>
@@ -191,16 +201,16 @@
                                 <div class="postbox-section">
                                     <div class="row">
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($button_border_array[0])??""?>" name="orderbtnborder[]" placeholder="0" title="Margin Top">
+                                            <input type="text" class="inputRadius" value="<?php if(isset($button_border_array[0])) echo esc_attr($button_border_array[0]); ?>" name="orderbtnborder[]" placeholder="0" title="Margin Top">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($button_border_array[0])??""?>" name="orderbtnborder[]" placeholder="0" title="Margin right">
+                                            <input type="text" class="inputRadius" value="<?php if(isset($button_border_array[1])) echo esc_attr($button_border_array[1]); ?>" name="orderbtnborder[]" placeholder="0" title="Margin right">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($button_border_array[0])??""?>" name="orderbtnborder[]" placeholder="0" title="Margin bottom">
+                                            <input type="text" class="inputRadius" value="<?php if(isset($button_border_array[2])) echo esc_attr($button_border_array[2]); ?>" name="orderbtnborder[]" placeholder="0" title="Margin bottom">
                                         </div>
                                         <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <input type="text" class="inputRadius" value="<?php echo esc_attr($button_border_array[0])??""?>" name="orderbtnborder[]" placeholder="0" title="Margin left">
+                                            <input type="text" class="inputRadius" value="<?php if(isset($button_border_array[3])) echo esc_attr($button_border_array[3]); ?>" name="orderbtnborder[]" placeholder="0" title="Margin left">
                                         </div>
                                     </div>
                                 </div>

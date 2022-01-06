@@ -65,6 +65,15 @@
 									<?php
 										$sno = 1;
 										$jsonMenuList = array();
+										$allowed_html = array(
+											'tr' => array(),
+											'td' => array('class' => array()),
+											'img' => array('class' => array(), 'src' => array(), 'alt' => array()),
+											'a' => array(
+												'onclick' => array(),
+												'class' => array()
+											),
+										);
 										foreach ($smp_allmenulist as $key => $value) 
 										{    
 											$jsonMenuList[$value['id']] = $value;
@@ -74,17 +83,17 @@
 											$createdDate = date("Y-m-d ",strtotime($value['createdDate']));
 											$string .= '<tr>';                        
 											$string .= '<td>
-															<img class="img-responsive"  width="50px" height="50px" src = "'.$optionsdata['imagePath'].'" alt = "'.$optionsdata['name'].'" /> 
-															'.$optionsdata['name'].'
+															<img class="img-responsive" src = "'.esc_url($optionsdata['imagePath']).'" alt = "'.esc_attr($optionsdata['name']).'" /> 
+															'.esc_html($optionsdata['name']).'
 														</td>';
-											$string .= '<td> $'.$optionsdata['finalPrice'].'</td>';
-											$string .= '<td>'.$optionsdata['categoryName'].'</td>';
+											$string .= '<td> $'.(float)$optionsdata['finalPrice'].'</td>';
+											$string .= '<td>'.esc_html($optionsdata['categoryName']).'</td>';
 											$string .= '<td> '.($isPublish?"Published":"Un-Publish").' </td>';
 											$string .= '<td> '.$createdDate.' </td>';
-											$string .= '<td class="text-center"> <a href="#" class="viewLink" onclick="return viewMoreMenuInfo('.$value['id'].');">View Detail</a> </td>';
+											$string .= '<td class="text-center"> <a href="#" class="viewLink" onclick="return viewMoreMenuInfo('.esc_attr($value['id']).');">View Detail</a> </td>';
 											$string .= '</tr>';
 											$sno        = $sno + 1;
-											echo wp_kses_post($string);       
+											echo wp_kses($string, $allowed_html);       
 										}
 									?>
 								</tbody>
