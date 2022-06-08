@@ -3,7 +3,7 @@
  * Plugin Name: SMART MENUPAD
  * Plugin URI:	http://smartmenupad.com
  * Description: SMART MENUPAD
- * Version: 	1.0.0
+ * Version: 	1.0.1
  * Author: 		SMART MENUPAD
  * Requires at least: 5.2
  * Requires PHP: 7.0
@@ -15,7 +15,7 @@ defined('ABSPATH') || exit;
 ob_start();
 define( '__SMPFILE__', __FILE__ );
 global $smp_db_version;
-$smp_db_version = '1.0';
+$smp_db_version = '1.0.1';
 
 require plugin_dir_path( __FILE__ ) . 'includes/SMPInit.php';
 new SMPInit();

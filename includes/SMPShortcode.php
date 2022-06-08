@@ -37,7 +37,16 @@ class SMPShortcode extends SMPBase {
 			$smp_allmenu_category_wise[$value["categoryId"]][] = $smp_allmenu[$key];
 			$smp_category[$value["categoryId"]] = $value["categoryName"];
 		}
+		
+		
+		
 		if(isset($_POST['menuids']) && count($_POST['menuids']) > 0) {
+			if(isset($_POST['show_order_now'])){
+				// print_r($_POST['show_order_now']);
+				$show_order_now = "1";
+			}else{
+				$show_order_now = "0";
+			}
 			$data = [ 
 				'time' => current_time( 'mysql' ), 
 				'title' => sanitize_text_field($_POST['title']), 
@@ -55,6 +64,7 @@ class SMPShortcode extends SMPBase {
 				'button_border' => implode(",", array_map('sanitize_text_field', $_POST['orderbtnborder'])),
 				'text' => 0, 
 				'url' => implode(",", array_map('sanitize_text_field', $_POST['menuids'])), 
+				'show_order_now'=> sanitize_text_field($show_order_now),  
 			];
 			
 			if(isset($_POST['add_shortcode'])) {	

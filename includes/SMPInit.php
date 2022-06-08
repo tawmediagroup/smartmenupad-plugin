@@ -1,3 +1,6 @@
+
+
+
 <?php 
 
 defined('ABSPATH') || exit;
@@ -33,6 +36,10 @@ class SMPInit extends SMPBase {
 				'wp_head', 
 				array($this, 'SMPFrontendStyle') 
 			);
+		add_action(  'plugins_loaded', 
+					array($this, 'SMPUpdateversion')
+		);
+		
 	}
 	
 	public function SMPActivatePlugin() {
@@ -59,6 +66,7 @@ class SMPInit extends SMPBase {
 				button_text_color varchar(255) NULL,
 				button_text_hover_color varchar(255) NULL,
 				button_border varchar(255) NULL,
+				show_order_now INT(11) NULL DEFAULT NULL ,
 				text text NULL,
 				url varchar(55) DEFAULT '' NOT NULL,
 				PRIMARY KEY  (id)
@@ -69,6 +77,19 @@ class SMPInit extends SMPBase {
 
 		add_option( 'smp_db_version', $smp_db_version );
 	}
+	
+	public function SMPUpdateversion(){
+		global $wpdb;
+		global $smp_db_version;
+		if( get_site_option('smp_db_version')!= $smp_db_version){
+		$table = $wpdb->prefix . 'smp_quick_menu';
+		$sql= $wpdb->query("ALTER TABLE `{$table}` ADD show_order_now INT(11) NULL DEFAULT NULL ;");
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		dbDelta($sql);
+		update_option( 'smp_db_version', $smp_db_version );
+		}
+	}
+	
 	
 	public function SMPInitPlugin() {
 		$connect = new SMPConnect();

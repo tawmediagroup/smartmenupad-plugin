@@ -3,9 +3,9 @@ Contributors: Smart Menupad
 Tags: restaurant menu, online restaurant menu, restaurant ordering, food order, online ordering system for restaurants, online food ordering system, online menu & ordering system
 Plugin URI:  http://smartmenupad.com/
 Requires at least: 5.2
-Tested up to: 5.8
+Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later.
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 

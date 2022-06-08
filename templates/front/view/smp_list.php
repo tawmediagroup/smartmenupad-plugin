@@ -39,6 +39,8 @@ $selected_menu = array();
 if(!empty($url)){
 	$selected_menu = explode(",",$url);
 }
+$show_order_now = $one_shortcode_data->show_order_now ?? '0';	
+
 ?>
 <style type="text/css">
 	.dynamicclass {
@@ -67,7 +69,13 @@ if(!empty($url)){
                         <span style="color: <?php echo esc_attr($price_color); ?>;" class="list-menu-item-price">$<?php echo esc_html($value["finalPrice"]); ?></span>
                         <h3 style="color: <?php echo esc_attr($heading_color); ?>;"  class="list-menu-item-name"><?php echo esc_html($value["categoryName"]); ?></h3>
                         <p style="color: <?php echo esc_attr($description_color); ?>;" class="list-menu-item-des"><?php echo esc_html($value["name"]); ?></p>
-                        <a href="#" class="order-btn dynamicclass" style="border-radius: <?php echo esc_attr($btntop); ?>px <?php echo esc_attr($btnright); ?>px <?php echo esc_attr($btnbottom); ?>px <?php echo esc_attr($btnleft); ?>px;"><?php _e('Order Now', 'smart-menupad'); ?></a>
+						<?php 
+						 if($show_order_now != 1){
+						?>
+                        <a href="#" class="order-btn dynamicclass" style="border-radius: <?php echo esc_attr($btntop); ?>px <?php echo esc_attr($btnright); ?>px <?php echo esc_attr($btnbottom); ?>px <?php echo esc_attr($btnleft); ?>px;"><?php _e('Order Now', 'smart-menupad'); ?> </a>
+						<?php
+						 }
+						 ?>
                     </div>
                 </div>
             </div>

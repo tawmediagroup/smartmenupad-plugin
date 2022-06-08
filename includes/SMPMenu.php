@@ -27,7 +27,22 @@ class SMPMenu extends SMPBase {
 					$error_message = $response->get_error_message();
 				} else {
 					$menulist = json_decode(wp_remote_retrieve_body( $response ), true);  
+					$upload_dir =  plugin_dir_path(__SMPFILE__).'assets/img/product';
+					$upload_url =  plugin_dir_url(__SMPFILE__).'assets/img/product';
+					if(!file_exists($upload_dir)){
+						mkdir($upload_dir, 0777, true);
+					}
 					if(!isset($menulist['message'])) {
+						foreach($menulist as $key => $item_images){
+							$images_data  = $item_images['imagePath'];
+							$file_name = basename($images_data);
+							$uploadfile = $upload_dir. '/' .$file_name;
+							$contents = file_get_contents($images_data);
+							$savefile = fopen($uploadfile, 'w');
+							fwrite($savefile, $contents);
+							fclose($savefile);
+							$menulist[$key]['imagePath'] = $upload_url. '/'.$file_name; 	
+						}
 						update_option('smp_allmenulist',$menulist); 
 						$smp_last_synced = date('Y-m-d H:i:s');
 						update_option('smp_last_synced', $smp_last_synced); 
@@ -50,7 +65,6 @@ class SMPMenu extends SMPBase {
 				exit;
 			}
 		}
-		
 		include(sprintf("%s/templates/admin/smp_menu_list.php", dirname(__SMPFILE__)));
 	}
 }

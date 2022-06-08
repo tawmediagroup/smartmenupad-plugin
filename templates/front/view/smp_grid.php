@@ -8,14 +8,14 @@ if($layout_column == 2){
 }
 
 //Text Colors
-$heading_color = !empty($one_shortcode_data->heading_color)?$one_shortcode_data->heading_color:$heading_color;
-$description_color = !empty($one_shortcode_data->description_color)?$one_shortcode_data->description_color:$description_color;
-$price_color = !empty($one_shortcode_data->price_color)?$one_shortcode_data->price_color:$price_color;
+$heading_color = !empty($one_shortcode_data->heading_color)?$one_shortcode_data->heading_color:$this->heading_color;
+$description_color = !empty($one_shortcode_data->description_color)?$one_shortcode_data->description_color:$this->description_color;
+$price_color = !empty($one_shortcode_data->price_color)?$one_shortcode_data->price_color:$this->price_color;
 //Button Colors
-$button_bg_color = !empty($one_shortcode_data->button_bg_color)?$one_shortcode_data->button_bg_color:$button_bg_color;		
-$button_bg_hover_color = !empty($one_shortcode_data->button_bg_hover_color)?$one_shortcode_data->button_bg_hover_color:$button_bg_hover_color;
-$button_text_color = !empty($one_shortcode_data->button_text_color)?$one_shortcode_data->button_text_color:$button_text_color;		
-$button_text_hover_color = !empty($one_shortcode_data->button_text_hover_color)?$one_shortcode_data->button_text_hover_color:$button_text_hover_color;
+$button_bg_color = !empty($one_shortcode_data->button_bg_color)?$one_shortcode_data->button_bg_color:$this->button_bg_color;		
+$button_bg_hover_color = !empty($one_shortcode_data->button_bg_hover_color)?$one_shortcode_data->button_bg_hover_color:$this->button_bg_hover_color;
+$button_text_color = !empty($one_shortcode_data->button_text_color)?$one_shortcode_data->button_text_color:$this->button_text_color;		
+$button_text_hover_color = !empty($one_shortcode_data->button_text_hover_color)?$one_shortcode_data->button_text_hover_color:$this->button_text_hover_color;
 //Image Border
 $image_border = $one_shortcode_data->image_border;
 $image_border_array = array();
@@ -43,6 +43,8 @@ $selected_menu = array();
 if(!empty($url)){
 	$selected_menu = explode(",", $url);
 }
+$show_order_now = $one_shortcode_data->show_order_now ?? '0';	
+
 ?> 
 
 <style type="text/css">
@@ -71,7 +73,13 @@ if(!empty($url)){
                 <span style="color: <?php echo esc_attr($price_color); ?>;" class="menu-item-price">$<?php echo esc_html($value["finalPrice"]); ?></span>
 				<h3 style="color: <?php echo esc_attr($heading_color); ?>;"  class="menu-item-name"><?php echo esc_html($value["categoryName"]); ?></h3>
 				<p style="color: <?php echo esc_attr($description_color); ?>;" class="menu-item-des"><?php echo esc_html($value["name"]); ?></p>
+				<?php 
+				 if($show_order_now != 1){
+				?>
 				<a href="#" class="order-btn dynamicclass" style="border-radius: <?php echo esc_attr($btntop); ?>px <?php echo esc_attr($btnright); ?>px <?php echo esc_attr($btnbottom); ?>px <?php echo esc_attr($btnleft); ?>px;"><?php _e('Order Now', 'smart-menupad'); ?></a>
+				<?php
+				 }
+				 ?>
             </div>
         <?php } ?>
     </div>

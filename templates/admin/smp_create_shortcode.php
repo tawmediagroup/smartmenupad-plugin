@@ -28,6 +28,10 @@
 					$button_text_color = !empty($one_shortcode_data->button_text_color)?$one_shortcode_data->button_text_color:$this->button_text_color;
                     $button_text_hover_color = !empty($one_shortcode_data->button_text_hover_color)?$one_shortcode_data->button_text_hover_color:$this->button_text_hover_color;
                     $image_border = $one_shortcode_data->image_border ?? '';
+					$boxes_enable = $one_shortcode_data->boxes_enable ?? '';
+					
+					$show_order_now = $one_shortcode_data->show_order_now ?? '0';	 
+					
                     $image_border_array = array();
                     if(!empty($image_border)) {
                         $image_border_array = explode(",", $image_border);
@@ -85,6 +89,7 @@
 											'input' => array('onchange' => array(), 'type' => array(), 'name' => array(), 'value' => array(), 'checked' => array()
 											),
 										);
+										
 										foreach( $smp_allmenu_category_wise as $k => $categories ) {
 											foreach ($categories as $key => $value) { 
 												$checked = in_array($value['id'], $selected_menu)?' checked="checked"' :'';
@@ -240,11 +245,30 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <div class="sidebarTitle"><?php _e('Button Hover Text Color', 'smart-menupad'); ?></div>
+                                        <div id="data" class="sidebarTitle"><?php _e('Button Hover Text Color', 'smart-menupad'); ?></div>
                                         <div class="postbox-section">
                                             <input type="text" name="button_text_hover_color" value="<?php echo esc_attr($button_text_hover_color); ?>" class="price_color" data-default-color="#effeff" />
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+							<div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+									<?php 
+									$checked = '';
+									if( $show_order_now == 1){
+										$checked = 'checked="checked"';
+									}
+									?>
+                                        <div class="postbox-section">
+										<div class="d-flex">
+										<input class="button_checkbox" <?php echo $checked;?> type="checkbox" name="show_order_now">
+										<label style="margin-top:-6px;"><?php _e('Hide add to cart ', 'smart-menupad'); ?> </label>
+										</div>
+										
+                                        </div>
+                                    </div>  
                                 </div>
                             </div>
                         </div> 
