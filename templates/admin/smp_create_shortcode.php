@@ -135,42 +135,38 @@
                         <div class="sidebarWrapper pb-4">
                             <h2><?php _e('Preset Setting', 'smart-menupad'); ?></h2>
                             <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="sidebarTitle"><?php _e('Choose a Layout style from below', 'smart-menupad'); ?></div>
-                                        <div class="postbox-section">
-                                            <select name="layout_view" id="layout_view" class="menuCategorySelect">
-                                                <option value="1" <?php if($layout_view == 1) echo 'selected="selected"'; ?> ><?php _e('Grid View', 'smart-menupad'); ?></option>
-                                                <option value="2" <?php if($layout_view == 2) echo 'selected="selected"'; ?> ><?php _e('List View', 'smart-menupad'); ?></option>                                  
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6" id="layout_column_hide" <?php if($layout_view == 2) { ?> style="display:none;" <?php } ?>>
-                                        <div class="sidebarTitle"><?php _e('Column', 'smart-menupad'); ?></div>
-                                        <div class="postbox-section">
-                                            <select name="layout_column" id="layout_column" class="menuCategorySelect">
-                                                <option value="2" <?php if($layout_column == 2) echo 'selected="selected"'; ?>>2</option>
-                                                <option value="3" <?php if($layout_column == 3) echo 'selected="selected"'; ?>>3</option>                                  
-                                                <option value="4" <?php if($layout_column == 4) echo 'selected="selected"'; ?>>4</option>                                  
-                                            </select>
-                                        </div>    
-                                    </div>
+                                <div class="sidebarTitle"><?php _e('Choose a Layout style from below', 'smart-menupad'); ?></div>
+                                <div class="postbox-section">
+                                    <select name="layout_view" id="layout_view" class="menuCategorySelect">
+                                        <option value="1" <?php if($layout_view == 1) echo 'selected="selected"'; ?> ><?php _e('Grid View', 'smart-menupad'); ?></option>
+                                        <option value="2" <?php if($layout_view == 2) echo 'selected="selected"'; ?> ><?php _e('List View', 'smart-menupad'); ?></option>                                  
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" id="layout_column_hide" <?php if($layout_view == 2) { ?> style="display:none;" <?php } ?>>
+                                <div class="sidebarTitle"><?php _e('Column', 'smart-menupad'); ?></div>
+                                <div class="postbox-section">
+                                    <select name="layout_column" id="layout_column" class="menuCategorySelect">
+                                        <option value="2" <?php if($layout_column == 2) echo 'selected="selected"'; ?>>2</option>
+                                        <option value="3" <?php if($layout_column == 3) echo 'selected="selected"'; ?>>3</option>                                  
+                                        <option value="4" <?php if($layout_column == 4) echo 'selected="selected"'; ?>>4</option>                                  
+                                    </select>   
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="sidebarTitle"><?php _e('Image Border Radius (px)', 'smart-menupad'); ?></div>
                                 <div class="postbox-section">
                                     <div class="row">
-                                        <div class="col-xl-3 col-lg-6 col-md-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 mb-3">
                                             <input type="text" class="inputRadius" value="<?php if(isset($image_border_array[0])) echo esc_attr($image_border_array[0]); ?>" name="imageborder[]" placeholder="0" title="Margin Top">
                                         </div>
-                                        <div class="col-xl-3 col-lg-6 col-md-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 mb-3">
                                             <input type="text" class="inputRadius" value="<?php if(isset($image_border_array[1])) echo esc_attr($image_border_array[1]); ?>" name="imageborder[]" placeholder="0" title="Margin right">
                                         </div>
-                                        <div class="col-xl-3 col-lg-6 col-md-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 mb-3">
                                             <input type="text" class="inputRadius" value="<?php if(isset($image_border_array[2])) echo esc_attr($image_border_array[2]); ?>" name="imageborder[]" placeholder="0" title="Margin bottom">
                                         </div>
-                                        <div class="col-xl-3 col-lg-6 col-md-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 mb-3">
                                             <input type="text" class="inputRadius" value="<?php if(isset($image_border_array[3])) echo esc_attr($image_border_array[3]); ?>" name="imageborder[]" placeholder="0" title="Margin left">
                                         </div>
                                     </div>
@@ -205,72 +201,56 @@
                                 <div class="sidebarTitle"><?php _e('Button Radius (px)', 'smart-menupad'); ?></div>
                                 <div class="postbox-section">
                                     <div class="row">
-                                        <div class="col-xl-3 col-lg-6 col-md-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 mb-3">
                                             <input type="text" class="inputRadius" value="<?php if(isset($button_border_array[0])) echo esc_attr($button_border_array[0]); ?>" name="orderbtnborder[]" placeholder="0" title="Margin Top">
                                         </div>
-                                        <div class="col-xl-3 col-lg-6 col-md-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 mb-3">
                                             <input type="text" class="inputRadius" value="<?php if(isset($button_border_array[1])) echo esc_attr($button_border_array[1]); ?>" name="orderbtnborder[]" placeholder="0" title="Margin right">
                                         </div>
-                                        <div class="col-xl-3 col-lg-6 col-md-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 mb-3">
                                             <input type="text" class="inputRadius" value="<?php if(isset($button_border_array[2])) echo esc_attr($button_border_array[2]); ?>" name="orderbtnborder[]" placeholder="0" title="Margin bottom">
                                         </div>
-                                        <div class="col-xl-3 col-lg-6 col-md-6">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 mb-3">
                                             <input type="text" class="inputRadius" value="<?php if(isset($button_border_array[3])) echo esc_attr($button_border_array[3]); ?>" name="orderbtnborder[]" placeholder="0" title="Margin left">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="sidebarTitle"><?php _e('Button Background Color', 'smart-menupad'); ?></div>
-                                        <div class="postbox-section">
-                                            <input type="text" name="button_bg_color" value="<?php echo esc_attr($button_bg_color); ?>" class="price_color" data-default-color="#effeff" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="sidebarTitle"><?php _e('Button Text Color', 'smart-menupad'); ?></div>
-                                        <div class="postbox-section">
-                                            <input type="text" name="button_text_color" value="<?php echo esc_attr($button_text_color);?>" class="price_color" data-default-color="#effeff" />
-                                        </div>
-                                    </div>
+                                <div class="sidebarTitle"><?php _e('Button Background Color', 'smart-menupad'); ?></div>
+                                <div class="postbox-section">
+                                    <input type="text" name="button_bg_color" value="<?php echo esc_attr($button_bg_color); ?>" class="price_color" data-default-color="#effeff" />
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="sidebarTitle"><?php _e('Button Background Hover Color', 'smart-menupad'); ?></div>
-                                        <div class="postbox-section">
-                                            <input type="text" name="button_bg_hover_color" value="<?php echo esc_attr($button_bg_hover_color); ?>" class="price_color" data-default-color="#effeff" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div id="data" class="sidebarTitle"><?php _e('Button Hover Text Color', 'smart-menupad'); ?></div>
-                                        <div class="postbox-section">
-                                            <input type="text" name="button_text_hover_color" value="<?php echo esc_attr($button_text_hover_color); ?>" class="price_color" data-default-color="#effeff" />
-                                        </div>
-                                    </div>
+                                <div class="sidebarTitle"><?php _e('Button Text Color', 'smart-menupad'); ?></div>
+                                <div class="postbox-section">
+                                    <input type="text" name="button_text_color" value="<?php echo esc_attr($button_text_color);?>" class="price_color" data-default-color="#effeff" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="sidebarTitle"><?php _e('Button Background Hover Color', 'smart-menupad'); ?></div>
+                                <div class="postbox-section">
+                                    <input type="text" name="button_bg_hover_color" value="<?php echo esc_attr($button_bg_hover_color); ?>" class="price_color" data-default-color="#effeff" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div id="data" class="sidebarTitle"><?php _e('Button Hover Text Color', 'smart-menupad'); ?></div>
+                                <div class="postbox-section">
+                                    <input type="text" name="button_text_hover_color" value="<?php echo esc_attr($button_text_hover_color); ?>" class="price_color" data-default-color="#effeff" />
                                 </div>
                             </div>
 							<div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-12">
-									<?php 
-									$checked = '';
-									if( $show_order_now == 1){
-										$checked = 'checked="checked"';
-									}
-									?>
-                                        <div class="postbox-section">
-										<div class="d-flex">
-										<input class="button_checkbox" <?php echo $checked;?> type="checkbox" name="show_order_now">
-										<label style="margin-top:-6px;"><?php _e('Hide add to cart ', 'smart-menupad'); ?> </label>
-										</div>
-										
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
+    							<?php 
+    								$checked = '';
+    								if( $show_order_now == 1){
+    									$checked = 'checked="checked"';
+    								}
+    							?>
+    							<div class="sidebarTitle"><?php _e('Do you want to hide the Order Now button', 'smart-menupad'); ?></div>
+                                <div class="instructionName"><?php _e('You can show or hide order now button from listing', 'smart-menupad'); ?></div>
+								<label class="buttonHideShow"><input class="button_checkbox" <?php echo $checked;?> type="checkbox" name="show_order_now"> <?php _e('Hide add to cart ', 'smart-menupad'); ?> </label>
+                            </div> 
                         </div> 
                     </div>
                 </div>

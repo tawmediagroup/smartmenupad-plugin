@@ -13,10 +13,10 @@ class SMPShortcode extends SMPBase {
 	private $heading_color = "#000000";
 	private $description_color = "#878787";
 	private $price_color = "#dd3333";
-	private $button_bg_color = "#FFFFF";
+	private $button_bg_color = "#FFFFFF";
 	private $button_text_color = "#dd3333";
 	private $button_bg_hover_color = "#dd3333";
-	private $button_text_hover_color = "#FFFFF";
+	private $button_text_hover_color = "#FFFFFF";
 
 	public function __construct() {
 		add_shortcode(

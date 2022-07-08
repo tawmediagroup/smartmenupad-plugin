@@ -141,17 +141,19 @@ display: none;
 .menuItemImage{
     width: 100%;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     border: 1px solid #ebebeb;
 }
 .order-btn{
-    background-color: #ffffff;
+    background-color: #000000;
     border: none;
     font-size: 14px;
-    padding: 8px 15px;
+    padding: 5px 12px;
     cursor: pointer;
-    color: #000000;
+    color: #ffffff;
     text-decoration: none;
+    display: inline-block;
+    margin: 5px 0px 0px 0px;
 }
 .order-btn:hover{
     background-color: #9F1212;
@@ -477,11 +479,10 @@ display: none;
 }
 .menu-item-des {
     color: #484848;
-    display: block;
-    font-size: 16px;
-    margin: 0px 0px 10px 0px;
-    padding: 0px 0px 0px 0px;
-    line-height: 22px;
+    font-size: 16px !important;
+    margin: 0px 0px 10px 0px !important;
+    padding: 0px 0px 0px 0px !important;
+    line-height: 22px !important;
 }
 
 /*..List View section css..*/
@@ -492,7 +493,7 @@ display: none;
     color: #28AB25;
     display: block;
     font-size: 16px;
-    margin: 5px ​0px 5px 0p;
+    margin: 5px 0px 5px 0px;
     padding: 0px 0px 0px 0px;
 }
 .list-menu-item-name {
@@ -555,4 +556,17 @@ display: none;
 .viewLink:hover{
     text-decoration: underline;
     color: #50575e;
+}
+.buttonHideShow{
+    font-size: 13px;
+    padding: 10px 15px 0px 15px;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 500;    
+}
+.buttonHideShow input [type="checkbox"]{
+    position: relative;
+    top: 1px;
+    width: 15px;
+    height: 15px;
 }

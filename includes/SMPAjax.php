@@ -31,19 +31,24 @@ class SMPAjax extends SMPBase {
 			$menulist = json_decode(wp_remote_retrieve_body( $response ), true);
 			$upload_dir =  plugin_dir_path(__SMPFILE__).'assets/img/product';
 			$upload_url =  plugin_dir_url(__SMPFILE__).'assets/img/product';
-				if(!file_exists($upload_dir)){
-					mkdir($upload_dir, 0777, true);
-				}
+			$default_img = plugin_dir_url(__SMPFILE__).'assets/img/food-default-image.png';
+			if(!file_exists($upload_dir)){
+				mkdir($upload_dir, 0777, true);
+			}
 			if(!isset($menulist['message'])) {
-				foreach($menulist as $key => $item_images){
-					$images_data  = $item_images['imagePath'];
-					$file_name = basename($images_data);
+				foreach($menulist as $key => $menu){
+					$image  = $menu['imagePath'];
+					$file_name = basename($image);
 					$uploadfile = $upload_dir. '/' .$file_name;
-					$contents = file_get_contents($images_data);
-					$savefile = fopen($uploadfile, 'w');
-					fwrite($savefile, $contents);
-					fclose($savefile);
-					$menulist[$key]['imagePath'] = $upload_url. '/'.$file_name; 	
+					$contents = @file_get_contents($image);
+					if($contents != "" ){
+						$savefile = fopen($uploadfile, 'w');
+						fwrite($savefile, $contents);
+						fclose($savefile);
+						$menulist[$key]['imagePath'] = $upload_url. '/'.$file_name;
+				    } else {
+						$menulist[$key]['imagePath'] = $default_img; 	
+					}
 				}
 				update_option('smp_allmenulist', $menulist); 
 				$updated_at = date('Y-m-d H:i:s');

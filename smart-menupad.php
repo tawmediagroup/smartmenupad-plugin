@@ -3,7 +3,7 @@
  * Plugin Name: SMART MENUPAD
  * Plugin URI:	http://smartmenupad.com
  * Description: SMART MENUPAD
- * Version: 	1.0.1
+ * Version: 	1.1.0
  * Author: 		SMART MENUPAD
  * Requires at least: 5.2
  * Requires PHP: 7.0

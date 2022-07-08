@@ -13,6 +13,7 @@ $description_color = !empty($one_shortcode_data->description_color)?$one_shortco
 $price_color = !empty($one_shortcode_data->price_color)?$one_shortcode_data->price_color:$this->price_color;
 //Button Colors
 $button_bg_color = !empty($one_shortcode_data->button_bg_color)?$one_shortcode_data->button_bg_color:$this->button_bg_color;		
+
 $button_bg_hover_color = !empty($one_shortcode_data->button_bg_hover_color)?$one_shortcode_data->button_bg_hover_color:$this->button_bg_hover_color;
 $button_text_color = !empty($one_shortcode_data->button_text_color)?$one_shortcode_data->button_text_color:$this->button_text_color;		
 $button_text_hover_color = !empty($one_shortcode_data->button_text_hover_color)?$one_shortcode_data->button_text_hover_color:$this->button_text_hover_color;
@@ -22,10 +23,10 @@ $image_border_array = array();
 if(!empty($image_border)) {
 	$image_border_array = explode(",", $image_border);
 }
-$top = empty($image_border_array[0])?10:$image_border_array[0];
-$right = empty($image_border_array[1])?10:$image_border_array[1];
-$bottom = empty($image_border_array[2])?10:$image_border_array[2];
-$left = empty($image_border_array[3])?10:$image_border_array[3];
+$top = $image_border_array[0]==''?10:$image_border_array[0];
+$right = $image_border_array[1]==''?10:$image_border_array[1];
+$bottom = $image_border_array[2]==''?10:$image_border_array[2];
+$left = $image_border_array[3]==''?10:$image_border_array[3];
 
 //Order Button Border
 $button_border = $one_shortcode_data->button_border;
@@ -33,10 +34,10 @@ $button_border_array = array();
 if(!empty($button_border)) {
 	$button_border_array = explode(",", $button_border);
 }
-$btntop = empty($button_border_array[0])?10:$button_border_array[0];
-$btnright = empty($button_border_array[1])?10:$button_border_array[1];
-$btnbottom = empty($button_border_array[2])?10:$button_border_array[2];
-$btnleft = empty($button_border_array[3])?10:$button_border_array[3];
+$btntop = $button_border_array[0]==''?10:$button_border_array[0];
+$btnright = $button_border_array[1]==''?10:$button_border_array[1];
+$btnbottom = $button_border_array[2]==''?10:$button_border_array[2];
+$btnleft = $button_border_array[3]==''?10:$button_border_array[3];
 
 $url = $one_shortcode_data->url;
 $selected_menu = array();
@@ -48,12 +49,12 @@ $show_order_now = $one_shortcode_data->show_order_now ?? '0';
 ?> 
 
 <style type="text/css">
-    .dynamicclass {
+    .dynamicclass<?php echo $one_shortcode_data->id; ?> {
         background-color: <?php echo esc_attr($button_bg_color); ?> !important;
 		color: <?php echo esc_attr($button_text_color); ?> !important;
     }
 
-    .dynamicclass:hover{
+    .dynamicclass<?php echo $one_shortcode_data->id; ?>:hover{
         background-color: <?php echo esc_attr($button_bg_hover_color); ?> !important;
 		color: <?php echo esc_attr($button_text_hover_color); ?> !important;
     }
@@ -76,7 +77,7 @@ $show_order_now = $one_shortcode_data->show_order_now ?? '0';
 				<?php 
 				 if($show_order_now != 1){
 				?>
-				<a href="#" class="order-btn dynamicclass" style="border-radius: <?php echo esc_attr($btntop); ?>px <?php echo esc_attr($btnright); ?>px <?php echo esc_attr($btnbottom); ?>px <?php echo esc_attr($btnleft); ?>px;"><?php _e('Order Now', 'smart-menupad'); ?></a>
+				<a href="#" class="order-btn dynamicclass<?php echo $one_shortcode_data->id; ?>" style="border-radius: <?php echo esc_attr($btntop); ?>px <?php echo esc_attr($btnright); ?>px <?php echo esc_attr($btnbottom); ?>px <?php echo esc_attr($btnleft); ?>px;"><?php _e('Order Now', 'smart-menupad'); ?></a>
 				<?php
 				 }
 				 ?>
